@@ -59,7 +59,7 @@ class InfoBox extends React.Component{
 							<p>Every 5 seconds it stimulates an update and a driver to complete his current delivery task.</p>
 							<div className="buttons">
 								<a className="button blue" onClick={this.closeInformationBox}>Okay</a>
-								<a className="button transparent" href="https://github.com/" target="_blank">Show source code</a>
+								<a className="button transparent" href="https://github.com/max-polak/react-delivery-management-app" target="_blank">Show source code</a>
 							</div>
 						</div>
 
@@ -69,7 +69,7 @@ class InfoBox extends React.Component{
 							<p>What would you like to do?</p>
 							<div className="buttons">
 								<a className="button blue" onClick={this.restartApp}>Reload the app</a>
-								<a className="button transparent" href="https://github.com/" target="_blank">Show source code</a>
+								<a className="button transparent" href="https://github.com/max-polak/react-delivery-management-app" target="_blank">Show source code</a>
 								<a className="button red" onClick={this.closeInformationBox}>Close this</a>
 							</div>
 						</div>
