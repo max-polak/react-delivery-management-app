@@ -1,0 +1,23 @@
+{
+  "name": "react-delivery-management-app",
+  "version": "1.0.0",
+  "description": "React Delivery Management App Demo",
+  "main": "index.js",
+  "dependencies": {
+    "node-sass": "latest"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-uglify-es": "^2.0.0",
+    "node-sass": "^4.7.2"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Maksym Jakubowski",
+  "license": "ISC"
+}

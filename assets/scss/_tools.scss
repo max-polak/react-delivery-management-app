@@ -1,0 +1,195 @@
+
+/*
+
+    Lokalne Fonty Przykład do skopiowania i edycji:
+
+    // Roboto Regular //
+    @font-face {
+        font-family: 'Roboto';
+        src: url('../fonts/Roboto/Roboto-Regular.eot');
+        src: local('☺'), url('../fonts/Roboto/Roboto-Regular.woff') format('woff'),
+            url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype'),
+            url('../fonts/Roboto/Roboto-Regular.svg') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    // @extend .f-regular;
+    .f-regular{
+        font-family: 'Roboto', Arial, Helvetica, sans-serif;
+        font-weight: 400 !important;
+
+    }
+*/
+
+/*
+    Breadcrumb - Przykład do skopiowania i edycji
+
+    ul.breadcrumb {
+        padding: 8px 16px;
+        list-style: none;
+        background-color: #eee;
+
+        li{ display: inline; }
+
+        li+li:before{
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+    }
+
+*/
+
+@function rem($px){
+    @return $px/16px * 1rem;
+}
+
+@mixin transition($args...){
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+// @include box-shadow(0px, 1px, 2px, 2px, #000000);
+@mixin box-shadow($horizontal: 0px, $vertical: 1px, $blur: 2px, $spread: 2px, $color: #CCC){
+    -webkit-box-shadow: $horizontal $vertical $blur $spread $color;
+    -moz-box-shadow: $horizontal $vertical $blur $spread $color;
+    box-shadow: $horizontal $vertical $blur $spread $color;
+}
+
+@mixin clearfix{
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// generic transform
+@mixin transform($transforms){
+   -moz-transform: $transforms;
+   -o-transform: $transforms;
+   -ms-transform: $transforms;
+   -webkit-transform: $transforms;
+   transform: $transforms;
+}
+
+// rotate
+@mixin rotate($deg){
+    @include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale){
+    @include transform(scale($scale));
+}
+// translate
+@mixin translate($x, $y){
+    @include transform(translate($x, $y));
+}
+// skew
+@mixin skew($x, $y){
+    @include transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin transform-origin($origin){
+    moz-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    -webkit-transform-origin: $origin;
+    transform-origin: $origin;
+}
+
+@mixin middleCenterChild($child){
+    white-space: nowrap;
+
+    &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        font-size: 0;
+    }
+
+    .#{$child} {
+        display: inline-block;
+        vertical-align: middle;
+        white-space: normal;
+    }
+}
+
+/*
+    placeholder - use inside input
+
+    input{
+        @include placeholder {
+            color: white;
+            font-weight:100;
+        }
+    }
+*/
+@mixin placeholder{
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+}
+
+
+@mixin blur($radius){
+    filter: blur($radius+px);
+    filter: url("data:image/svg+xml;utf8,<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"blur\"><feGaussianBlur stdDeviation=\"#{$radius}\" /></filter></svg>#blur"); /* Firefox, Safari, Chrome*/
+    filter: progid:DXImageTransform.Microsoft.Blur(Strength=$radius); /* IE9 */
+    -webkit-filter: blur($radius+px); /* Chrome, Safari */
+    -ms-filter: blur($radius+px); /* IE */
+    -o-filter: blur($radius+px); /* Opera */
+    -moz-filter: blur($radius+px); /* Mozilla */
+}
+
+/* KEYFRAMES ANIMATIONS
+
+    @include keyframes(move-the-object) {
+        0%   { left: 100px; }
+        100% { left: 200px; }
+    }
+
+    .object-to-animate {
+        @include animation('move-the-object .5s 1', 'move-the-object-again .5s 1 .5s');
+    }
+
+*/
+
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}

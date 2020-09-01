@@ -1,0 +1,325 @@
+
+@import "tools";
+@import "normalize";
+
+$grey: #f4f7f6;
+
+$blue: #0062ff;
+$blue_dark: #004ecc;
+
+$red: #ff365b;
+$red_dark: darken($red, 5%);
+
+body{
+	background-color: $grey;
+	
+	*{ box-sizing: border-box; }
+
+	p,a,span,h1,h2,h3,h4,td,th{
+		font-weight: 400;
+		font-family: Roboto,'Helvetica Neue', Helvetica, Arial ,sans-serif;
+	}
+
+	h2{
+		font-weight: 500;
+		font-size: 40px;
+		margin: 0 0 20px 0;
+		@media all and (max-width: 479px){
+			font-size: 32px;
+		}
+	}
+
+	p{
+		margin: 0;
+		font-size: 14px;
+	}
+
+
+	span{ font: inherit; }
+}
+
+.button{
+	display: inline-block;
+	border-radius: 3px;
+	padding: 10px 30px;
+	cursor: pointer;
+	font-size: 16px;
+	line-height: 22px;
+	font-weight: 500;
+	color: #000000;
+	@include transition(all .23s ease);
+
+	@media all and (max-width: 767px){
+		padding: 8px 20px;
+		font-size: 15px;
+	}
+	&.transparent{
+		background-color: transparent;
+		border: solid 1px #e4e4e4;
+
+		&:hover{
+			color: #000000;
+			border-color: #000000;
+		}
+	}
+
+	&.blue{
+		background-color: $blue;
+		color: #ffffff;
+
+		&:hover{
+			background-color: $blue_dark;
+		}
+	}
+
+	&.red{
+		background-color: $red;
+		color: #ffffff;
+
+		&:hover{
+			background-color: $red_dark;
+		}
+	}
+
+	&.round{
+		border-radius: 50px;
+		padding: 3px 26px;
+		font-size: 12px;
+		font-weight: 500;
+		line-height: 20px;
+	}
+}
+
+#info-box{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: rgba(0,0,0,0.25);
+
+	.outer-wrapper{
+		width: 100%;
+		height: 100%;
+		margin: 0 auto;
+		text-align: center;
+		@include middleCenterChild(inner-wrapper);
+	}
+
+	.inner-wrapper{
+		text-align: center;
+		background-color: #ffffff;
+		padding: 45px;
+		border-radius: 10px;
+		@include box-shadow(0px, 1px, 2px, 2px, #ababab);
+
+		@media all and (max-width: 767px){
+			padding: 30px;
+		}
+		@media all and (max-width: 479px){
+			padding: 20px;
+		}
+
+		p{
+			font-size: 16px;
+			line-height: 20px;
+			@media all and (max-width: 479px){
+				font-size: 14px;
+				line-height: 16px;
+			}
+		}
+
+		.buttons{
+			margin-top: 20px;
+			@media all and (max-width: 479px){
+				margin-top: 10px;
+			}
+
+			.button{
+				display: inline-block;
+				vertical-align: middle;
+				margin: 8px;
+			}
+		}
+
+	}
+
+	&.information{
+		.information-msg{
+			display: block;
+		}
+	}
+
+	&.app-finished{
+		.app-finished-msg{
+			display: block;
+		}
+	}
+
+	&.actions{
+		.actions-msg{
+			display: block;
+		}
+	}
+
+	&.hide{
+		display: none;
+	}
+
+	.information-msg, 
+	.app-finished-msg, 
+	.actions-msg{
+		display: none;
+	}
+
+}
+
+#my-app{
+
+	.content-wrapper{
+		padding: 45px 30px;
+		@media all and (max-width: 767px){
+			padding: 0;
+		}
+	}
+
+	.app-wrapper{
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 15px;
+		background-color: #ffffff;
+		display: none;
+	}
+
+	&.started .app-wrapper{
+		display: block;
+	}
+	
+	#delivery-table-wrapper{
+		padding: 0 30px;
+		overflow-x: auto;
+
+		@media all and (max-width: 767px){
+			padding: 0;
+		}
+
+		> .wrapper{
+			padding: 15px;
+			background-color: #efefef;
+		}
+	}
+
+
+	#top-bar{
+		text-align: right;
+		@include clearfix;
+
+		#nav{
+			float: left;
+
+			a{
+
+				img{
+					width: 14px;
+					margin-right: 8px;
+					display: inline-block;
+					vertical-align: middle;
+				}
+
+				span{
+					display: inline-block;
+					vertical-align: middle;
+				}
+
+			}
+
+			.information{
+				margin-right: 24px;
+			}
+
+		}
+
+		#clock{
+			float: right;
+			@media all and (max-width: 479px){
+				p{
+					line-height: 28px;
+				}
+			}
+		}
+	}
+
+	#today-date{
+		text-align: center;
+
+		h3{
+			font-size: 26px;
+			padding: 45px 0;
+			margin: 0;
+			@media all and (max-width: 479px){
+				font-size: 20px;
+				padding: 30px 0;
+			}
+		}
+	}
+
+	#delivery-table{
+		border-collapse: collapse;
+		width: 100%;
+		min-width: 600px;
+
+		td,th{
+			text-align: center;
+			border: 1px solid #ddd;
+			padding: 8px;
+			@media all and (max-width: 479px){
+
+			}
+		}
+
+		th{
+			padding: 16px;
+			background-color: $blue;
+			color: #ffffff;
+			font-weight: 500;
+			font-size: 16px;
+			@media all and (max-width: 479px){
+				padding: 8px 12px;
+			}
+		}
+
+		td.completed-jobs p{
+			font-size: inherit;
+			text-align: inherit;
+		}
+
+		tr:nth-child(even){
+			background-color: $grey;
+		}
+
+		td.actions div{
+			margin-bottom: 5px;
+
+			&:last-child{
+				margin-bottom: 0;
+			}
+
+			a{
+				background-color: transparent;
+				border:none;
+				color: $blue;
+				font-weight: 500;
+				padding: 0;
+				margin: 0;
+				cursor: pointer;
+
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+
+		}
+
+	}
+	
+}
